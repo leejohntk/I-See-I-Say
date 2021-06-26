@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Translate from './Translate'
 import WebcamComponent from "./Webcam";
 
 /**
@@ -12,9 +11,8 @@ export const Home = props => {
   return (
     <React.Fragment>
     <div>
-      <h3>Welcome, {username}</h3>
+      <h3>{username}, take a pic and I'll tell you what I see and a translation!</h3>
     </div>
-    <Translate />
     <WebcamComponent />
     </React.Fragment>
   )
