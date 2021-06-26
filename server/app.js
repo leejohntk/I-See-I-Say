@@ -8,7 +8,7 @@ module.exports = app
 app.use(morgan('dev'))
 
 // body parsing middleware
-app.use(express.json())
+app.use(express.json({ limit: 150000}))
 
 // auth and api routes
 app.use('/auth', require('./auth'))

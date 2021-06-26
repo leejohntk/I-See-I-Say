@@ -1,4 +1,4 @@
-# FS-App-Template
+# I-See-I-Say
 
 ## Setup
 
