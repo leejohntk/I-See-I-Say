@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 // ACTION TYPES
-const TRANSLATE = 'TRANSLATE';
+const TRANSLATED = 'TRANSLATED';
 
 // ACTION CREATORS
 export const gotTranslation = (translatedText) => {
   return {
-    type: TRANSLATE,
-    translate: translatedText,
+    type: TRANSLATED,
+    translated: translatedText,
   };
 };
 
@@ -16,6 +16,7 @@ export const gotTranslation = (translatedText) => {
 export const getTranslation = (translateInfo) => {
   return async (dispatch) => {
     const translatedText = await axios.post('/api/trans', translateInfo);
+    console.log(translatedText.data)
     dispatch(gotTranslation(translatedText.data));
   };
 };
@@ -23,13 +24,13 @@ export const getTranslation = (translateInfo) => {
 // REDUCER
 
 const initialState = {
-  translate: '',
+  translated: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case TRANSLATE:
-      return { translate: action.translate };
+    case TRANSLATED:
+      return { ...state, translated: action.translated };
     default:
       return state;
   }

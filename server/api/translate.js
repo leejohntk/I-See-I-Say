@@ -17,14 +17,14 @@ router.post('/', async (req, res, next) => {
   try {
     async function translateText() {
       // The text to translate
-      const text = req.body.q;
+      const text = req.body.detectedObjects;
 
       // The target language
-      const target = req.body.target;
+      const target = req.body.selectLang;
 
       // Translates some text
       const [translation] = await translate.translate(text, target);
-      return translation;
+      return translation.split(/\s*;\s*/);
     }
 
     const translatedText = await translateText();
