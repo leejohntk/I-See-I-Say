@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 // ACTION TYPES
-const DETECTED_OBJ = 'DETECTED_OBJ';
+const DETECTED_OBJS = 'DETECTED_OBJS';
 
 // ACTION CREATORS
-export const gotDetectedObjectsInImage = (detectedObj) => {
+export const gotDetectedObjectsInImage = (detectedObjs) => {
   return {
-    type: DETECTED_OBJ,
-    detectedObj,
+    type: DETECTED_OBJS,
+    detectedObjs,
   };
 };
 
@@ -16,22 +16,21 @@ export const gotDetectedObjectsInImage = (detectedObj) => {
 export const detectObjsInPhoto = (imageInfo) => {
   return async (dispatch) => {
     const imgInObj = { img: imageInfo };
-
     const detectedObjectsFromImage = await axios.post('/api/vision', imgInObj);
-    dispatch(gotDetectedObjectsInImage(detectedObjectsFromImage));
+    dispatch(gotDetectedObjectsInImage(detectedObjectsFromImage.data));
   };
 };
 
 // REDUCER
 
 const initialState = {
-  detectedObj: '',
+  detectedObjs: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case DETECTED_OBJ:
-      return { detectedObj: action.detectedObj };
+    case DETECTED_OBJS:
+      return { ...state, detectedObjs: action.detectedObjs };
     default:
       return state;
   }
