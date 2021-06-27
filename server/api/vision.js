@@ -2,7 +2,6 @@ const router = require('express').Router();
 module.exports = router;
 
 const vision = require('@google-cloud/vision');
-// const fs = require('fs');
 require('dotenv').config();
 
 const CREDS = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
