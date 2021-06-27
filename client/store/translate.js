@@ -16,7 +16,6 @@ export const gotTranslation = (translatedText) => {
 export const getTranslation = (translateInfo) => {
   return async (dispatch) => {
     const translatedText = await axios.post('/api/trans', translateInfo);
-    console.log(translatedText.data)
     dispatch(gotTranslation(translatedText.data));
   };
 };

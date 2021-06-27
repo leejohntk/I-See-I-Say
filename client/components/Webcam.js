@@ -6,12 +6,12 @@ import { getTranslation } from '../store/translate';
 import {
   Button,
   ContentWrapper,
-  Select,
-  ReturnedText,
   DetectedObjectsWrapper,
-  TranslatedTextWrapper,
-  FlexWrapper,
   FlexChild,
+  FlexWrapper,
+  ReturnedText,
+  Select,
+  TranslatedTextWrapper,
 } from './style/StyledComponents';
 
 const WebcamComponent = (props) => {
@@ -98,15 +98,15 @@ const WebcamComponent = (props) => {
       <FlexWrapper>
         {detectedObjects.map((word, index) => {
           return (
-            <DetectedObjectsWrapper>
-              <ReturnedText key={index}>{word}</ReturnedText>
+            <DetectedObjectsWrapper key={index}>
+              <ReturnedText>{word}</ReturnedText>
             </DetectedObjectsWrapper>
           );
         })}
         {translatedText.map((word, index) => {
           return (
-            <TranslatedTextWrapper>
-              <ReturnedText key={index}>{word}</ReturnedText>
+            <TranslatedTextWrapper key={index}>
+              <ReturnedText>{word}</ReturnedText>
             </TranslatedTextWrapper>
           );
         })}

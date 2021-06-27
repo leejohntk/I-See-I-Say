@@ -1,5 +1,24 @@
 import styled from 'styled-components';
 
+export const Title = styled.h1`
+  font-size: 2em;
+  text-align: center;
+  color: white;
+`;
+
+export const TitleWrapper = styled.section`
+  padding: .3em;
+  margin: 1em;
+  background: #222E50;
+  border-radius: 15px
+`;
+
+export const Logo = styled.section`
+  text-align: center;
+  font-size: 50px;
+  padding-top: .25em;
+`;
+
 export const Button = styled.button`
   color: #222e50;
   font-size: 1em;
@@ -11,8 +30,8 @@ export const Button = styled.button`
 `;
 
 export const ContentWrapper = styled.section`
-  padding: 1em;
-  margin: 1em;
+  padding: .5em;
+  margin: .5em;
   background: #222e50;
   border-radius: 15px;
 

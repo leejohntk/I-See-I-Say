@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-
+import { Logo, Title, TitleWrapper } from './style/StyledComponents';
 
 // { <nav>
 // {isLoggedIn ? (
@@ -23,9 +23,15 @@ import { logout } from '../store';
 // </nav> }
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
-    <p className="title">👁🙈 👁🙊</p>
-  </div>
+  <React.Fragment>
+    <Logo>
+      {/* <p className="title">👁🙈   👁🙊</p> */}
+      👁🙈   👁🙊
+    </Logo>
+    <TitleWrapper>
+      <Title>Take a pic and I'll tell you what I see with a translation!</Title>
+    </TitleWrapper>
+  </React.Fragment>
 );
 
 /**
@@ -45,6 +51,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 //   };
 // };
 
-export default Navbar
+export default Navbar;
 
 // export default connect(mapState, mapDispatch)(Navbar);
