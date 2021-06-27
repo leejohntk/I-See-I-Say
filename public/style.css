@@ -20,3 +20,14 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+i {
+  display: inline-block;
+  animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -26,7 +26,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <React.Fragment>
     <Logo>
       {/* <p className="title">👁🙈   👁🙊</p> */}
-      👁🙈   👁🙊
+      <i>👁</i><i>🙈</i>   <i>👁</i><i>🙊</i>
     </Logo>
     <TitleWrapper>
       <Title>Take a pic and I'll tell you what I see with a translation!</Title>
