@@ -7,16 +7,16 @@ export const Title = styled.h1`
 `;
 
 export const TitleWrapper = styled.section`
-  padding: .3em;
+  padding: 0.3em;
   margin: 1em;
-  background: #222E50;
-  border-radius: 15px
+  background: #222e50;
+  border-radius: 15px;
 `;
 
 export const Logo = styled.section`
   text-align: center;
   font-size: 50px;
-  padding-top: .25em;
+  padding-top: 0.25em;
 `;
 
 export const Button = styled.button`
@@ -30,8 +30,8 @@ export const Button = styled.button`
 `;
 
 export const ContentWrapper = styled.section`
-  padding: .5em;
-  margin: .5em;
+  padding: 0.5em;
+  margin: 0.5em;
   background: #222e50;
   border-radius: 15px;
 
@@ -67,9 +67,7 @@ export const ReturnedText = styled.h2`
   font-size: 2em;
   text-align: center;
   color: white;
-  line-height: 100%
-
-  flex 1;
+  line-height: 100% flex 1;
 `;
 
 export const DetectedObjectsWrapper = styled.section`

@@ -27,7 +27,7 @@ const WebcamComponent = (props) => {
   }, [webcamRef, setImgSrc]);
 
   //language selector
-  let [selectLang, setLang] = useState('en');
+  let [selectLang, setLang] = useState('zh-CN');
 
   //detected objs on props
   const detectedObjects = useSelector((state) => state.vision.detectedObjs);
