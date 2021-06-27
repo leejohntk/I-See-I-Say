@@ -3,6 +3,16 @@ import Webcam from 'react-webcam';
 import { useDispatch, useSelector } from 'react-redux';
 import { detectObjsInPhoto } from '../store/vision';
 import { getTranslation } from '../store/translate';
+import {
+  Button,
+  ContentWrapper,
+  Select,
+  ReturnedText,
+  DetectedObjectsWrapper,
+  TranslatedTextWrapper,
+  FlexWrapper,
+  FlexChild,
+} from './style/StyledComponents';
 
 const WebcamComponent = (props) => {
   const dispatch = useDispatch();
@@ -24,7 +34,7 @@ const WebcamComponent = (props) => {
   const detectedObjectsChange = detectedObjects.join('');
 
   //translated text on props
-  const translatedText = useSelector((state) => state.translate.translated)
+  const translatedText = useSelector((state) => state.translate.translated);
 
   //dispatch change for webcam
   useEffect(() => {
@@ -39,42 +49,68 @@ const WebcamComponent = (props) => {
   useEffect(() => {
     if (detectedObjectsChange) {
       let translationInfo = {
-          detectedObjects: detectedObjects.join(' ; '),
-          selectLang
-      }
-      dispatch(getTranslation(translationInfo))
+        detectedObjects: detectedObjects.join(' ; '),
+        selectLang,
+      };
+      dispatch(getTranslation(translationInfo));
     }
   }, [detectedObjectsChange, selectLang]);
 
   return (
     <>
-      {detectedObjects.map((word, index) => {
-        return <h1 key={index}>{word}</h1>;
-      })}
-      {translatedText.map((word, index) => {
-          return <h1 key={index}>{word}</h1>
-      })}
-      <label onClick={(event) => setLang((selectLang = event.target.value))}>
-        Select the language to translate to:
-        <select>
-          <option value="zh-CN">Chinese (Simplified)</option>
-          <option value="zh-TW">Chinese (Traditional)</option>
-          <option value="fr">French</option>
-          <option value="it">Italian</option>
-          <option value="ja">Japanese</option>
-          <option value="km">Khmer</option>
-          <option value="ko">Korean</option>
-          <option value="lo">Lao</option>
-          <option value="pa">Punjabi</option>
-          <option value="es">Spanish</option>
-          <option value="ta">Tamil</option>
-          <option value="vi">Vietnamese</option>
-        </select>
-      </label>
+      <FlexWrapper>
+        <ContentWrapper>
+          <label
+            onClick={(event) => setLang((selectLang = event.target.value))}
+          >
+            Translate to:
+            <Select>
+              <option value="zh-CN">Chinese (Simplified)</option>
+              <option value="zh-TW">Chinese (Traditional)</option>
+              <option value="fr">French</option>
+              <option value="it">Italian</option>
+              <option value="ja">Japanese</option>
+              <option value="km">Khmer</option>
+              <option value="ko">Korean</option>
+              <option value="lo">Lao</option>
+              <option value="pa">Punjabi</option>
+              <option value="es">Spanish</option>
+              <option value="ta">Tamil</option>
+              <option value="vi">Vietnamese</option>
+            </Select>
+          </label>
+        </ContentWrapper>
+        <ContentWrapper>
+          <Button onClick={capture}>Do it now!</Button>
+        </ContentWrapper>
+      </FlexWrapper>
 
-      <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-      <button onClick={capture}>Capture photo</button>
-      {imgSrc && <img src={imgSrc} />}
+      <FlexWrapper>
+        <FlexChild>
+          <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+        </FlexChild>
+
+        <FlexChild>
+          <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
+        </FlexChild>
+      </FlexWrapper>
+
+      <FlexWrapper>
+        {detectedObjects.map((word, index) => {
+          return (
+            <DetectedObjectsWrapper>
+              <ReturnedText key={index}>{word}</ReturnedText>
+            </DetectedObjectsWrapper>
+          );
+        })}
+        {translatedText.map((word, index) => {
+          return (
+            <TranslatedTextWrapper>
+              <ReturnedText key={index}>{word}</ReturnedText>
+            </TranslatedTextWrapper>
+          );
+        })}
+      </FlexWrapper>
     </>
   );
 };
