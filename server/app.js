@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
+const rateLimit = require("express-rate-limit");
 const app = express()
 module.exports = app
 
@@ -10,7 +11,18 @@ app.use(morgan('dev'))
 // body parsing middleware
 app.use(express.json({ limit: 150000}))
 
-// auth and api routes
+// apply rate limiter to requests that begin with /api/vision/
+app.set('trust proxy', 1);
+const apiLimiter = rateLimit({
+  windowMs: (31 * 24 * 60 * 60 * 1000) / 2, // 15.5 days
+  max: 500,
+  onLimitReached: function (req, res, options) {
+    res.send(['Too many requests made, please try again later!'])
+  }
+});
+app.use("/api/vision/", apiLimiter);
+
+// api routes
 app.use('/api', require('./api'))
 
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
