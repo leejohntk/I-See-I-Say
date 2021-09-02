@@ -42,7 +42,7 @@ export const ContentWrapper = styled.section`
   text-align: center;
 `;
 
-export const Select = styled.select`
+export const SelectWrapper = styled.select`
   width: 75%;
   height: 35px;
   background: white;

@@ -10,9 +10,11 @@ import {
   FlexChild,
   FlexWrapper,
   ReturnedText,
-  Select,
+  // SelectWrapper,
   TranslatedTextWrapper,
 } from './style/StyledComponents';
+import { languageOptions } from './assets/languages';
+import Select from 'react-select';
 
 const WebcamComponent = (props) => {
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ const WebcamComponent = (props) => {
   }, [webcamRef, setImgSrc]);
 
   //language selector
-  let [selectLang, setLang] = useState('zh-CN');
+  let [selectLang, setLang] = useState('fr');
 
   //detected objs on props
   const detectedObjects = useSelector((state) => state.vision.detectedObjs);
@@ -60,24 +62,15 @@ const WebcamComponent = (props) => {
     <>
       <FlexWrapper>
         <ContentWrapper>
-          <label
-            onClick={(event) => setLang((selectLang = event.target.value))}
-          >
+          <label>
             Translate to:
-            <Select>
-              <option value="zh-CN">Chinese (Simplified)</option>
-              <option value="zh-TW">Chinese (Traditional)</option>
-              <option value="fr">French</option>
-              <option value="it">Italian</option>
-              <option value="ja">Japanese</option>
-              <option value="km">Khmer</option>
-              <option value="ko">Korean</option>
-              <option value="lo">Lao</option>
-              <option value="pa">Punjabi</option>
-              <option value="es">Spanish</option>
-              <option value="ta">Tamil</option>
-              <option value="vi">Vietnamese</option>
-            </Select>
+            <Select
+              isClearable="true"
+              isSearchable="true"
+              onChange={(selected) => {setLang((selectLang = selected.value))}}
+              defaultValue={languageOptions[24]} //French as default
+              options={languageOptions}
+            />
           </label>
         </ContentWrapper>
         <ContentWrapper>
