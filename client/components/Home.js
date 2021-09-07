@@ -3,7 +3,6 @@ import Webcam from 'react-webcam';
 import { useDispatch, useSelector } from 'react-redux';
 import { detectObjsInPhoto } from '../store/vision';
 import { getTranslation } from '../store/translate';
-import { selectedLanguage } from '../store/select';
 import {
   Button,
   ContentWrapper,
@@ -11,14 +10,12 @@ import {
   FlexChild,
   HorizontalWrapper,
   ReturnedText,
-  SelectOptions,
   TranslatedTextWrapper,
   VerticalWrapper,
 } from './style/StyledComponents';
-import { languageOptions } from './assets/languages';
-import Select from 'react-select';
+import SelectLanguage from './SelectLanguage';
 
-const WebcamComponent = (props) => {
+const Home = (props) => {
   const dispatch = useDispatch();
 
   //webcam functionality
@@ -31,7 +28,7 @@ const WebcamComponent = (props) => {
   }, [webcamRef, setImgSrc]);
 
   //selected language on props
-  const selectLanguage = useSelector((state) => state.select.selectedLanguage)
+  const selectLanguage = useSelector((state) => state.select.selectedLanguage);
 
   //detected objs on props
   const detectedObjects = useSelector((state) => state.vision.detectedObjs);
@@ -51,6 +48,7 @@ const WebcamComponent = (props) => {
 
   //   dispatch change for translate
   useEffect(() => {
+    console.log(selectLanguage);
     if (detectedObjectsChange) {
       let translationInfo = {
         detectedObjects: detectedObjects.join(' ; '),
@@ -65,24 +63,8 @@ const WebcamComponent = (props) => {
       <HorizontalWrapper>
         {/* left column with language option select and webcam */}
         <VerticalWrapper>
-          <FlexChild>
-            <ContentWrapper>
-              <label>
-                Translate to:
-                </label>
-                <SelectOptions>
-                <Select
-                  isClearable="true"
-                  isSearchable="true"
-                  onChange={(selected) => {
-                    dispatch(selectedLanguage(selected.value));
-                  }}
-                  defaultValue={languageOptions[24]} //French as default
-                  options={languageOptions}
-                />
-              </SelectOptions>
-            </ContentWrapper>
-          </FlexChild>
+          <SelectLanguage />
+
           <FlexChild>
             <Webcam
               audio={false}
@@ -124,4 +106,4 @@ const WebcamComponent = (props) => {
   );
 };
 
-export default WebcamComponent;
+export default Home;
