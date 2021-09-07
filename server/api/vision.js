@@ -24,8 +24,8 @@ router.post('/', async (req, res, next) => {
 
     // array of filtered items
     return objects
-      .filter((object) => {
-        if (object.score >= 0.6) {
+      .filter((object, index) => {
+        if (object.score >= 0.6 && index <= 2) {
           return object.name;
         }
       })
