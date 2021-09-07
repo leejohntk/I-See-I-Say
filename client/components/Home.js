@@ -3,6 +3,7 @@ import Webcam from 'react-webcam';
 import { useDispatch, useSelector } from 'react-redux';
 import { detectObjsInPhoto } from '../store/vision';
 import { getTranslation } from '../store/translate';
+import { selectedLanguage } from '../store/select';
 import {
   Button,
   ContentWrapper,
@@ -29,8 +30,8 @@ const WebcamComponent = (props) => {
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
-  //language selector
-  let [selectLang, setLang] = useState('fr');
+  //selected language on props
+  const selectLanguage = useSelector((state) => state.select.selectedLanguage)
 
   //detected objs on props
   const detectedObjects = useSelector((state) => state.vision.detectedObjs);
@@ -53,11 +54,11 @@ const WebcamComponent = (props) => {
     if (detectedObjectsChange) {
       let translationInfo = {
         detectedObjects: detectedObjects.join(' ; '),
-        selectLang,
+        selectLanguage,
       };
       dispatch(getTranslation(translationInfo));
     }
-  }, [detectedObjectsChange, selectLang]);
+  }, [detectedObjectsChange, selectLanguage]);
 
   return (
     <>
@@ -74,11 +75,10 @@ const WebcamComponent = (props) => {
                   isClearable="true"
                   isSearchable="true"
                   onChange={(selected) => {
-                    setLang((selectLang = selected.value));
+                    dispatch(selectedLanguage(selected.value));
                   }}
                   defaultValue={languageOptions[24]} //French as default
                   options={languageOptions}
-                  
                 />
               </SelectOptions>
             </ContentWrapper>

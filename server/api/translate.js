@@ -20,7 +20,7 @@ router.post('/', async (req, res, next) => {
       const text = req.body.detectedObjects;
 
       // The target language
-      const target = req.body.selectLang;
+      const target = req.body.selectLanguage;
 
       // Translates some text
       const [translation] = await translate.translate(text, target);
