@@ -6,7 +6,6 @@ import { getTranslation } from '../store/translate';
 import {
   Button,
   ContentWrapper,
-  DetectedObjectsWrapper,
   FlexChild,
   HorizontalWrapper,
   ReturnedText,
@@ -14,6 +13,7 @@ import {
   VerticalWrapper,
 } from './style/StyledComponents';
 import SelectLanguage from './SelectLanguage';
+import DetectedObjectsComponent from './DetectedObjectsComponent';
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -48,7 +48,6 @@ const Home = (props) => {
 
   //   dispatch change for translate
   useEffect(() => {
-    console.log(selectLanguage);
     if (detectedObjectsChange) {
       let translationInfo = {
         detectedObjects: detectedObjects.join(' ; '),
@@ -61,10 +60,9 @@ const Home = (props) => {
   return (
     <>
       <HorizontalWrapper>
-        {/* left column with language option select and webcam */}
+        {/* left column */}
         <VerticalWrapper>
           <SelectLanguage />
-
           <FlexChild>
             <Webcam
               audio={false}
@@ -72,28 +70,25 @@ const Home = (props) => {
               screenshotFormat="image/jpeg"
             />
           </FlexChild>
+          <DetectedObjectsComponent />
         </VerticalWrapper>
-        {/* right column with submit button & returned image */}
+        {/* right column */}
         <VerticalWrapper>
+          {/* submit button */}
           <FlexChild>
             <ContentWrapper>
               <Button onClick={capture}>Do it now!</Button>
             </ContentWrapper>
           </FlexChild>
+          {/* returned image */}
           <FlexChild>
             <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
           </FlexChild>
         </VerticalWrapper>
       </HorizontalWrapper>
+
       {/* detected & translated text */}
       <HorizontalWrapper>
-        {detectedObjects.map((word, index) => {
-          return (
-            <DetectedObjectsWrapper key={index}>
-              <ReturnedText>{word}</ReturnedText>
-            </DetectedObjectsWrapper>
-          );
-        })}
         {translatedText.map((word, index) => {
           return (
             <TranslatedTextWrapper key={index}>

@@ -76,6 +76,7 @@ export const TranslatedTextWrapper = styled.section`
 `;
 
 export const HorizontalWrapper = styled.section`
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
