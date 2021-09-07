@@ -15,7 +15,7 @@ app.use(express.json({ limit: 150000}))
 app.set('trust proxy', 1);
 const apiLimiter = rateLimit({
   windowMs: (31 * 24 * 60 * 60 * 1000) / 2, // 15.5 days
-  max: 500,
+  max: 450,
   onLimitReached: function (req, res, options) {
     res.send(['Too many requests made, please try again later!'])
   }
