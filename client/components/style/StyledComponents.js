@@ -31,13 +31,15 @@ export const Button = styled.button`
 
 export const ContentWrapper = styled.section`
   width: 250px;
-  padding: 0.5em;
-  margin: 0.5em;
+  padding: 0.75em;
+  margin: 0.75em;
   background: #222e50;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 1em;
   color: white;
   font-weight: bold;
+  text-align: center;
+  flex: 1;
 `;
 
 export const SelectOptions = styled.section`
@@ -80,14 +82,6 @@ export const HorizontalWrapper = styled.section`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-`;
-
-export const FlexChild = styled.section`
-  text-align: center;
-
-  padding: 0.1px;
-  margin: 1em;
-  flex: 1;
 `;
 
 export const VerticalWrapper = styled.section`

@@ -6,7 +6,6 @@ import { getTranslation } from '../store/translate';
 import {
   Button,
   ContentWrapper,
-  FlexChild,
   HorizontalWrapper,
   VerticalWrapper,
 } from './style/StyledComponents';
@@ -59,25 +58,15 @@ const Home = (props) => {
         {/* left column */}
         <VerticalWrapper>
           <SelectLanguage />
-          <FlexChild>
-            <Webcam
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat="image/jpeg"
-            />
-          </FlexChild>
+          <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
           <DetectedObjectsComponent />
         </VerticalWrapper>
         {/* right column */}
         <VerticalWrapper>
-          <FlexChild>
-            <ContentWrapper>
-              <Button onClick={capture}>Do it now!</Button>
-            </ContentWrapper>
-          </FlexChild>
-          <FlexChild>
-            <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
-          </FlexChild>
+          <ContentWrapper>
+            <Button onClick={capture}>Do it now!</Button>
+          </ContentWrapper>
+          <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
           <TranslatedTextComponent />
         </VerticalWrapper>
       </HorizontalWrapper>
