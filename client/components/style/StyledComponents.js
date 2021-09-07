@@ -30,38 +30,25 @@ export const Button = styled.button`
 `;
 
 export const ContentWrapper = styled.section`
+  width: 250px;
   padding: 0.5em;
   margin: 0.5em;
   background: #222e50;
-  border-radius: 15px;
-
+  border-radius: 10px;
   font-size: 1em;
   color: white;
   font-weight: bold;
-
-  text-align: center;
 `;
 
-export const SelectWrapper = styled.select`
-  width: 75%;
-  height: 35px;
-  background: white;
-  color: gray;
-  font-size: 14px;
-  border: none;
-
-  border-radius: 5px;
-
-  option {
-    color: black;
-    background: white;
-    font-weight: small;
-    display: flex;
-    white-space: pre;
-    min-height: 20px;
-    padding: 0px 2px 1px;
-  }
+export const SelectOptions = styled.section`
+  padding: 0.2em;
+  margin: 0.2em;
+  font-size: 1em;
+  color: black;
+  font-weight: bold;
+  text-align:left;
 `;
+
 
 export const ReturnedText = styled.h2`
   font-size: 2em;

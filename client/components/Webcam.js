@@ -10,6 +10,7 @@ import {
   FlexChild,
   HorizontalWrapper,
   ReturnedText,
+  SelectOptions,
   TranslatedTextWrapper,
   VerticalWrapper,
 } from './style/StyledComponents';
@@ -67,6 +68,8 @@ const WebcamComponent = (props) => {
             <ContentWrapper>
               <label>
                 Translate to:
+                </label>
+                <SelectOptions>
                 <Select
                   isClearable="true"
                   isSearchable="true"
@@ -75,8 +78,9 @@ const WebcamComponent = (props) => {
                   }}
                   defaultValue={languageOptions[24]} //French as default
                   options={languageOptions}
+                  
                 />
-              </label>
+              </SelectOptions>
             </ContentWrapper>
           </FlexChild>
           <FlexChild>
