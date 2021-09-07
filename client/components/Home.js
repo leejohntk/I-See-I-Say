@@ -8,12 +8,11 @@ import {
   ContentWrapper,
   FlexChild,
   HorizontalWrapper,
-  ReturnedText,
-  TranslatedTextWrapper,
   VerticalWrapper,
 } from './style/StyledComponents';
 import SelectLanguage from './SelectLanguage';
 import DetectedObjectsComponent from './DetectedObjectsComponent';
+import TranslatedTextComponent from './TranslatedTextComponent';
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -33,9 +32,6 @@ const Home = (props) => {
   //detected objs on props
   const detectedObjects = useSelector((state) => state.vision.detectedObjs);
   const detectedObjectsChange = detectedObjects.join('');
-
-  //translated text on props
-  const translatedText = useSelector((state) => state.translate.translated);
 
   //dispatch change for webcam
   useEffect(() => {
@@ -74,28 +70,16 @@ const Home = (props) => {
         </VerticalWrapper>
         {/* right column */}
         <VerticalWrapper>
-          {/* submit button */}
           <FlexChild>
             <ContentWrapper>
               <Button onClick={capture}>Do it now!</Button>
             </ContentWrapper>
           </FlexChild>
-          {/* returned image */}
           <FlexChild>
             <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
           </FlexChild>
+          <TranslatedTextComponent />
         </VerticalWrapper>
-      </HorizontalWrapper>
-
-      {/* detected & translated text */}
-      <HorizontalWrapper>
-        {translatedText.map((word, index) => {
-          return (
-            <TranslatedTextWrapper key={index}>
-              <ReturnedText>{word}</ReturnedText>
-            </TranslatedTextWrapper>
-          );
-        })}
       </HorizontalWrapper>
     </>
   );
