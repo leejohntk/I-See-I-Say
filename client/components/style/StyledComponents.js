@@ -88,7 +88,7 @@ export const TranslatedTextWrapper = styled.section`
   flex: 1;
 `;
 
-export const FlexWrapper = styled.section`
+export const HorizontalWrapper = styled.section`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -100,4 +100,11 @@ export const FlexChild = styled.section`
   padding: 0.1px;
   margin: 1em;
   flex: 1;
+`;
+
+export const VerticalWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 `;

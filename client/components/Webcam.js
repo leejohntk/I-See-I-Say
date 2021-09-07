@@ -8,10 +8,10 @@ import {
   ContentWrapper,
   DetectedObjectsWrapper,
   FlexChild,
-  FlexWrapper,
+  HorizontalWrapper,
   ReturnedText,
-  // SelectWrapper,
   TranslatedTextWrapper,
+  VerticalWrapper,
 } from './style/StyledComponents';
 import { languageOptions } from './assets/languages';
 import Select from 'react-select';
@@ -60,35 +60,47 @@ const WebcamComponent = (props) => {
 
   return (
     <>
-      <FlexWrapper>
-        <ContentWrapper>
-          <label>
-            Translate to:
-            <Select
-              isClearable="true"
-              isSearchable="true"
-              onChange={(selected) => {setLang((selectLang = selected.value))}}
-              defaultValue={languageOptions[24]} //French as default
-              options={languageOptions}
+      <HorizontalWrapper>
+        {/* left column with language option select and webcam */}
+        <VerticalWrapper>
+          <FlexChild>
+            <ContentWrapper>
+              <label>
+                Translate to:
+                <Select
+                  isClearable="true"
+                  isSearchable="true"
+                  onChange={(selected) => {
+                    setLang((selectLang = selected.value));
+                  }}
+                  defaultValue={languageOptions[24]} //French as default
+                  options={languageOptions}
+                />
+              </label>
+            </ContentWrapper>
+          </FlexChild>
+          <FlexChild>
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
             />
-          </label>
-        </ContentWrapper>
-        <ContentWrapper>
-          <Button onClick={capture}>Do it now!</Button>
-        </ContentWrapper>
-      </FlexWrapper>
-
-      <FlexWrapper>
-        <FlexChild>
-          <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-        </FlexChild>
-
-        <FlexChild>
-          <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
-        </FlexChild>
-      </FlexWrapper>
-
-      <FlexWrapper>
+          </FlexChild>
+        </VerticalWrapper>
+        {/* right column with submit button & returned image */}
+        <VerticalWrapper>
+          <FlexChild>
+            <ContentWrapper>
+              <Button onClick={capture}>Do it now!</Button>
+            </ContentWrapper>
+          </FlexChild>
+          <FlexChild>
+            <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
+          </FlexChild>
+        </VerticalWrapper>
+      </HorizontalWrapper>
+      {/* detected & translated text */}
+      <HorizontalWrapper>
         {detectedObjects.map((word, index) => {
           return (
             <DetectedObjectsWrapper key={index}>
@@ -103,7 +115,7 @@ const WebcamComponent = (props) => {
             </TranslatedTextWrapper>
           );
         })}
-      </FlexWrapper>
+      </HorizontalWrapper>
     </>
   );
 };
