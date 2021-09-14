@@ -7,8 +7,8 @@ class Routes extends Component {
     return (
       <div>
         <Switch>
-          <Route path="/home" component={Home} />
-          <Redirect to="/home" />
+          <Route path="/" component={Home} />
+          <Redirect to="/" />
         </Switch>
       </div>
     );
