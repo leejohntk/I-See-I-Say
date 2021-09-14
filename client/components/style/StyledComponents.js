@@ -1,24 +1,24 @@
 import styled from 'styled-components';
-
+// Navbar.js
 export const Title = styled.h1`
   font-size: 2em;
   text-align: center;
   color: white;
 `;
-
+// Navbar.js
 export const TitleWrapper = styled.section`
   padding: 0.3em;
   margin: 1em;
   background: #222e50;
   border-radius: 15px;
 `;
-
+// Navbar.js
 export const Logo = styled.section`
   text-align: center;
   font-size: 50px;
   padding-top: 0.25em;
 `;
-
+// Home.js
 export const Button = styled.button`
   color: #222e50;
   font-size: 1em;
@@ -28,7 +28,14 @@ export const Button = styled.button`
   border: 2px solid #222e50;
   border-radius: 3px;
 `;
-
+// Home.js, 
+export const VerticalWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+// Home.js, SelectLanguage.js
 export const ContentWrapper = styled.section`
   width: 250px;
   padding: 0.75em;
@@ -41,7 +48,7 @@ export const ContentWrapper = styled.section`
   text-align: center;
   flex: 1;
 `;
-
+// SelectLanguage.js,
 export const SelectOptions = styled.section`
   padding: 0.2em;
   margin: 0.2em;
@@ -51,7 +58,7 @@ export const SelectOptions = styled.section`
   text-align:left;
 `;
 
-
+// DetectedObjectsComponent.js, TranslatedTextComponent.js
 export const ReturnedText = styled.h2`
   font-size: 2em;
   text-align: center;
@@ -59,6 +66,7 @@ export const ReturnedText = styled.h2`
   line-height: 100% flex 1;
 `;
 
+// DetectedObjectsComponent.js
 export const DetectedObjectsWrapper = styled.section`
   padding: 0.1px;
   margin: 1em;
@@ -67,7 +75,7 @@ export const DetectedObjectsWrapper = styled.section`
 
   flex: 1;
 `;
-
+// TranslatedTextComponent.js
 export const TranslatedTextWrapper = styled.section`
   padding: 0.1px;
   margin: 1em;
@@ -76,17 +84,10 @@ export const TranslatedTextWrapper = styled.section`
 
   flex: 1;
 `;
-
+// Home.js, DetectedObjectsComponent.js, TranslatedTextComponent.js
 export const HorizontalWrapper = styled.section`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-`;
-
-export const VerticalWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 `;
