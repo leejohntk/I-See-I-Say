@@ -59,29 +59,29 @@ export const SelectOptions = styled.section`
 `;
 
 // DetectedObjectsComponent.js, TranslatedTextComponent.js
+// !
 export const ReturnedText = styled.h2`
   font-size: 2em;
   text-align: center;
   color: white;
-  line-height: 100% flex 1;
+  line-height: 100%;
 `;
 
 // DetectedObjectsComponent.js
+// !
 export const DetectedObjectsWrapper = styled.section`
   padding: 0.1px;
   margin: 1em;
   background: #007991;
   border-radius: 15px;
-
   flex: 1;
 `;
-// TranslatedTextComponent.js
+// TranslatedTextComponent.js 
 export const TranslatedTextWrapper = styled.section`
   padding: 0.1px;
   margin: 1em;
   background: #439a86;
   border-radius: 15px;
-
   flex: 1;
 `;
 // Home.js, DetectedObjectsComponent.js, TranslatedTextComponent.js

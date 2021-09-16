@@ -61,7 +61,7 @@ const Home = (props) => {
         <VerticalWrapper>
           <SelectLanguage />
           <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-          <PrintedText text={detectedObjects} />
+          <PrintedText text={detectedObjects} isTranslatedText={false}/>
         </VerticalWrapper>
         {/* right column */}
         <VerticalWrapper>
@@ -69,7 +69,7 @@ const Home = (props) => {
             <Button onClick={capture}>Do it now!</Button>
           </ContentWrapper>
           <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
-          <PrintedText text={translatedText} />
+          <PrintedText text={translatedText} isTranslatedText={true}/>
         </VerticalWrapper>
       </HorizontalWrapper>
     </>

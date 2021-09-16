@@ -3,18 +3,26 @@ import {
   HorizontalWrapper,
   DetectedObjectsWrapper,
   ReturnedText,
+  TranslatedTextWrapper,
 } from './style/StyledComponents';
 
 const printedText = (props) => {
-console.log(props.isTranslated)
   return (
     <HorizontalWrapper>
       {props.text.map((word, index) => {
-        return (
-          <DetectedObjectsWrapper key={index}>
-            <ReturnedText>{word}</ReturnedText>
-          </DetectedObjectsWrapper>
-        );
+        if (props.isTranslatedText) {
+          return (
+            <DetectedObjectsWrapper key={index}>
+              <ReturnedText>{word}</ReturnedText>
+            </DetectedObjectsWrapper>
+          );
+        } else {
+          return (
+            <TranslatedTextWrapper key={index}>
+              <ReturnedText>{word}</ReturnedText>
+            </TranslatedTextWrapper>
+          );
+        }
       })}
     </HorizontalWrapper>
   );
