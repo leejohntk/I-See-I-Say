@@ -58,8 +58,7 @@ export const SelectOptions = styled.section`
   text-align:left;
 `;
 
-// DetectedObjectsComponent.js, TranslatedTextComponent.js
-// !
+// PrintedText.js
 export const ReturnedText = styled.h2`
   font-size: 2em;
   text-align: center;
@@ -67,8 +66,7 @@ export const ReturnedText = styled.h2`
   line-height: 100%;
 `;
 
-// DetectedObjectsComponent.js
-// !
+// PrintedText.js
 export const DetectedObjectsWrapper = styled.section`
   padding: 0.1px;
   margin: 1em;
@@ -76,7 +74,8 @@ export const DetectedObjectsWrapper = styled.section`
   border-radius: 15px;
   flex: 1;
 `;
-// TranslatedTextComponent.js 
+
+// PrintedText.js
 export const TranslatedTextWrapper = styled.section`
   padding: 0.1px;
   margin: 1em;
