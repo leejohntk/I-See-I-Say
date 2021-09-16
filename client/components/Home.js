@@ -24,17 +24,15 @@ const Home = (props) => {
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
-  //selected language on props
+  //selected language for Translate API
   const selectLanguage = useSelector((state) => state.select.selectedLanguage);
-
-  //detected objs on props
+  //detected objs for Translate API
   const detectedObjects = useSelector((state) => state.vision.detectedObjs);
-  const detectedObjectsChange = detectedObjects.join('');
 
-  //translated text
+  //translated text for PrintedText component
   const translatedText = useSelector((state) => state.translate.translated);
 
-  //dispatch change for webcam
+  //dispatch img to Vision API
   useEffect(() => {
     if (imgSrc !== null) {
       const base64String = imgSrc;
@@ -43,16 +41,16 @@ const Home = (props) => {
     }
   }, [imgSrc]);
 
-  //   dispatch change for translate
+  //dispatch detected objects & selected language to Translate API
   useEffect(() => {
-    if (detectedObjectsChange) {
+    if (detectedObjects.length) {
       let translationInfo = {
         detectedObjects: detectedObjects.join(' ; '),
         selectLanguage,
       };
       dispatch(getTranslation(translationInfo));
     }
-  }, [detectedObjectsChange, selectLanguage]);
+  }, [detectedObjects.length, selectLanguage]);
 
   return (
     <>

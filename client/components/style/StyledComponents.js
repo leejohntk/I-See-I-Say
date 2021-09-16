@@ -83,7 +83,7 @@ export const TranslatedTextWrapper = styled.section`
   border-radius: 15px;
   flex: 1;
 `;
-// Home.js, DetectedObjectsComponent.js, TranslatedTextComponent.js
+// Home.js, PrintedText.js
 export const HorizontalWrapper = styled.section`
   width: 100%;
   display: flex;
