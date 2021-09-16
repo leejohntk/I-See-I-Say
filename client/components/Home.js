@@ -32,6 +32,9 @@ const Home = (props) => {
   const detectedObjects = useSelector((state) => state.vision.detectedObjs);
   const detectedObjectsChange = detectedObjects.join('');
 
+  //translated text
+  const translatedText = useSelector((state) => state.translate.translated);
+
   //dispatch change for webcam
   useEffect(() => {
     if (imgSrc !== null) {
@@ -59,7 +62,7 @@ const Home = (props) => {
         <VerticalWrapper>
           <SelectLanguage />
           <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-          <DetectedObjectsComponent />
+          <DetectedObjectsComponent text={detectedObjects} />
         </VerticalWrapper>
         {/* right column */}
         <VerticalWrapper>
