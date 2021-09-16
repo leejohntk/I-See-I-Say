@@ -10,8 +10,7 @@ import {
   VerticalWrapper,
 } from './style/StyledComponents';
 import SelectLanguage from './SelectLanguage';
-import DetectedObjectsComponent from './DetectedObjectsComponent';
-import TranslatedTextComponent from './TranslatedTextComponent';
+import PrintedText from './PrintedText';
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -62,7 +61,7 @@ const Home = (props) => {
         <VerticalWrapper>
           <SelectLanguage />
           <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-          <DetectedObjectsComponent text={detectedObjects} />
+          <PrintedText text={detectedObjects} />
         </VerticalWrapper>
         {/* right column */}
         <VerticalWrapper>
@@ -70,7 +69,7 @@ const Home = (props) => {
             <Button onClick={capture}>Do it now!</Button>
           </ContentWrapper>
           <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
-          <TranslatedTextComponent />
+          <PrintedText text={translatedText} />
         </VerticalWrapper>
       </HorizontalWrapper>
     </>

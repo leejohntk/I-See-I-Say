@@ -5,8 +5,8 @@ import {
   ReturnedText,
 } from './style/StyledComponents';
 
-const detectedObjectsComponent = (props) => {
-
+const printedText = (props) => {
+console.log(props.isTranslated)
   return (
     <HorizontalWrapper>
       {props.text.map((word, index) => {
@@ -20,4 +20,4 @@ const detectedObjectsComponent = (props) => {
   );
 };
 
-export default detectedObjectsComponent;
+export default printedText;
