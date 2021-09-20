@@ -1,7 +1,7 @@
 import React from 'react';
 import { Logo, Title, TitleWrapper } from './style/StyledComponents';
 
-const Navbar = () => (
+const Header = () => (
   <React.Fragment>
     <Logo>
       <i>👁</i>
@@ -14,4 +14,4 @@ const Navbar = () => (
   </React.Fragment>
 );
 
-export default Navbar;
+export default Header;
