@@ -16,7 +16,7 @@ export const gotDetectedObjectsInImage = (detectedObjs) => {
 export const detectObjsInPhoto = (imageInfo) => {
   return async (dispatch) => {
     //sets loading text immedately uses 100ms timeout before Vision API call
-    dispatch(gotDetectedObjectsInImage(['Please wait...']));
+    dispatch(gotDetectedObjectsInImage(['Loading...']));
     const imgInObj = { img: imageInfo };
     const detectedObjectsFromImage = await axios.post('/api/vision', imgInObj);
     setTimeout(() => {
