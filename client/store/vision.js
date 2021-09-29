@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { gotTranslation } from './translate';
 
 // ACTION TYPES
 const DETECTED_OBJS = 'DETECTED_OBJS';
@@ -17,11 +18,10 @@ export const detectObjsInPhoto = (imageInfo) => {
   return async (dispatch) => {
     //sets loading text immedately uses 100ms timeout before Vision API call
     dispatch(gotDetectedObjectsInImage(['Loading...']));
+    dispatch(gotTranslation(['Please wait...']));
     const imgInObj = { img: imageInfo };
     const detectedObjectsFromImage = await axios.post('/api/vision', imgInObj);
-    setTimeout(() => {
-          dispatch(gotDetectedObjectsInImage(detectedObjectsFromImage.data));
-    }, 100);
+    return detectedObjectsFromImage.data;
   };
 };
 

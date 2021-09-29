@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Webcam from 'react-webcam';
 import { useDispatch, useSelector } from 'react-redux';
-import { detectObjsInPhoto } from '../store/vision';
-import { getTranslation } from '../store/translate';
+import { detectObjsInPhoto, gotDetectedObjectsInImage } from '../store/vision';
+import { getTranslation, gotTranslation } from '../store/translate';
 import {
   Button,
   ContentWrapper,
@@ -37,20 +37,40 @@ const Home = (props) => {
     if (imgSrc !== null) {
       const base64String = imgSrc;
       const base64Image = base64String.split(';base64,').pop();
-      imgSrc && dispatch(detectObjsInPhoto(base64Image));
+
+      let imageInfo = [];
+      let translatedInfo = [];
+
+      // dispatch to VISION API
+      if (imgSrc) {
+        let applyImageInfo = async () => {
+          imageInfo = await dispatch(detectObjsInPhoto(base64Image));
+        };
+        applyImageInfo();
+      }
+
+      // dispatch to TRANSLATE API
+      let applyTextInfo = async () => {
+        let translationInfo = {
+          detectedObjects: imageInfo.join(' ; '),
+          selectLanguage,
+        };
+        translatedInfo = await dispatch(getTranslation(translationInfo));
+      };
+
+      setTimeout(() => {
+        applyTextInfo();
+      }, 500);
+
+      // dispatch detected objects and translation
+      setTimeout(() => {
+        Promise.all([imageInfo, translatedInfo]).then((results) => {
+          dispatch(gotDetectedObjectsInImage(results[0]));
+          dispatch(gotTranslation(results[1]));
+        });
+      }, 900);
     }
   }, [imgSrc]);
-
-  //dispatch detected objects & selected language to Translate API
-  useEffect(() => {
-    if (detectedObjects.length) {
-      let translationInfo = {
-        detectedObjects: detectedObjects.join(' ; '),
-        selectLanguage,
-      };
-      dispatch(getTranslation(translationInfo));
-    }
-  }, [detectedObjects.length, selectLanguage]);
 
   return (
     <>
@@ -59,7 +79,7 @@ const Home = (props) => {
         <VerticalWrapper>
           <SelectLanguage />
           <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-          <PrintedText text={detectedObjects} isTranslatedText={false}/>
+          <PrintedText text={detectedObjects} isTranslatedText={false} />
         </VerticalWrapper>
         {/* right column */}
         <VerticalWrapper>
@@ -67,7 +87,7 @@ const Home = (props) => {
             <Button onClick={capture}>Do it now!</Button>
           </ContentWrapper>
           <img src={imgSrc ? imgSrc : '/welcome.jpg'} />
-          <PrintedText text={translatedText} isTranslatedText={true}/>
+          <PrintedText text={translatedText} isTranslatedText={true} />
         </VerticalWrapper>
       </HorizontalWrapper>
     </>
