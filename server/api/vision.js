@@ -14,25 +14,29 @@ const client = new vision.ImageAnnotatorClient({
 
 // POST /api/vision
 router.post('/', async (req, res, next) => {
-  async function visionAPIrequest() {
-    const request = {
-      image: { content: req.body.img },
-    };
+  try {
+    async function visionAPIrequest() {
+      const request = {
+        image: { content: req.body.img },
+      };
 
-    const [result] = await client.objectLocalization(request);
-    let objects = result.localizedObjectAnnotations;
+      const [result] = await client.objectLocalization(request);
+      let objects = result.localizedObjectAnnotations;
 
-    // array of filtered items
-    return objects
-      .filter((object, index) => {
-        if (object.score >= 0.6 && index <= 2) {
+      // array of filtered items
+      return objects
+        .filter((object, index) => {
+          if (object.score >= 0.6 && index <= 2) {
+            return object.name;
+          }
+        })
+        .map((object) => {
           return object.name;
-        }
-      })
-      .map((object) => {
-        return object.name;
-      });
+        });
+    }
+    const detectedObjects = await visionAPIrequest();
+    res.send(detectedObjects);
+  } catch (error) {
+    next(error);
   }
-  const detectedObjects = await visionAPIrequest();
-  res.send(detectedObjects)
 });
