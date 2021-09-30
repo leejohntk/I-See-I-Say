@@ -60,7 +60,7 @@ const Home = (props) => {
 
       setTimeout(() => {
         applyTextInfo();
-      }, 500);
+      }, 600);
 
       // dispatch detected objects and translation
       setTimeout(() => {
