@@ -41,34 +41,31 @@ const Home = (props) => {
       let imageInfo = [];
       let translatedInfo = [];
 
-      // dispatch to VISION API
       if (imgSrc) {
+        // dispatch to VISION API and save as array
         let applyImageInfo = async () => {
           imageInfo = await dispatch(detectObjsInPhoto(base64Image));
         };
-        applyImageInfo();
-      }
 
-      // dispatch to TRANSLATE API
-      let applyTextInfo = async () => {
-        let translationInfo = {
-          detectedObjects: imageInfo.join(' ; '),
-          selectLanguage,
+        // dispatch to TRANSLATE API and save as array
+        let applyTextInfo = async () => {
+          let translationInfo = {
+            detectedObjects: imageInfo.join(' ; '),
+            selectLanguage,
+          };
+          translatedInfo = await dispatch(getTranslation(translationInfo));
         };
-        translatedInfo = await dispatch(getTranslation(translationInfo));
-      };
-
-      setTimeout(() => {
-        applyTextInfo();
-      }, 600);
-
-      // dispatch detected objects and translation
-      setTimeout(() => {
-        Promise.all([imageInfo, translatedInfo]).then((results) => {
-          dispatch(gotDetectedObjectsInImage(results[0]));
-          dispatch(gotTranslation(results[1]));
-        });
-      }, 900);
+        
+        // set fetched text to state in async parallel
+        applyImageInfo().then((resolve) =>
+          applyTextInfo().then((resolve) => {
+            Promise.all([imageInfo, translatedInfo]).then((results) => {
+              dispatch(gotDetectedObjectsInImage(results[0]));
+              dispatch(gotTranslation(results[1]));
+            });
+          })
+        );
+      }
     }
   }, [imgSrc]);
 
