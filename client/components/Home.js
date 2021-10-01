@@ -34,26 +34,24 @@ const Home = (props) => {
 
   //dispatch img to Vision API
   useEffect(() => {
-    if (imgSrc !== null) {
+    if (imgSrc) {
       const base64String = imgSrc;
       const base64Image = base64String.split(';base64,').pop();
 
-      if (imgSrc) {
-        // chain dispatching of Vision API to Translate API
-        dispatch(detectObjsInPhoto(base64Image)).then((fetchedObjects) => {
-          const translationInfo = {
-            detectedObjects: fetchedObjects.join(' ; '),
-            selectLanguage,
-          };
-          dispatch(getTranslation(translationInfo)).then(
-            (fetchedTranslations) => {
-              // set detected objects and translations to state
-              dispatch(gotDetectedObjectsInImage(fetchedObjects));
-              dispatch(gotTranslation(fetchedTranslations));
-            }
-          );
-        });
-      }
+      // chain dispatching of Vision API to Translate API
+      dispatch(detectObjsInPhoto(base64Image)).then((fetchedObjects) => {
+        const translationInfo = {
+          detectedObjects: fetchedObjects.join(' ; '),
+          selectLanguage,
+        };
+        dispatch(getTranslation(translationInfo)).then(
+          (fetchedTranslations) => {
+            // set detected objects and translations to state
+            dispatch(gotDetectedObjectsInImage(fetchedObjects));
+            dispatch(gotTranslation(fetchedTranslations));
+          }
+        );
+      });
     }
   }, [imgSrc]);
 
